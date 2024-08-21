@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmqyrmtfdayto"]
+
+[ext_resource type="PackedScene" uid="uid://d0ejlkwlvs6f" path="res://assets/burger/burger.tscn" id="1_v5dy0"]
+[ext_resource type="Material" uid="uid://cta0qjd0uux3j" path="res://assets/burger/burger.tres" id="2_nguk1"]
+[ext_resource type="Material" uid="uid://bodjepna6ac20" path="res://assets/test/test.tres" id="3_vkl7g"]
+[ext_resource type="Texture2D" uid="uid://d1jlmmadq6cnw" path="res://icon.svg" id="4_53wa2"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_k2rrq"]
+size = Vector2(100, 100)
+
+[node name="Scene" type="Node2D"]
+
+[node name="Burger1" parent="." instance=ExtResource("1_v5dy0")]
+material = ExtResource("2_nguk1")
+position = Vector2(304, 529)
+scale = Vector2(0.5, 0.5)
+
+[node name="Burger2" parent="." instance=ExtResource("1_v5dy0")]
+material = ExtResource("2_nguk1")
+position = Vector2(815, 529)
+scale = Vector2(0.5, 0.5)
+cookTime = 10.0
+
+[node name="UVTest" type="Sprite2D" parent="."]
+material = ExtResource("3_vkl7g")
+position = Vector2(64, 64)
+texture = ExtResource("4_53wa2")
+
+[node name="Grill" type="Sprite2D" parent="."]
+position = Vector2(569, 620)
+scale = Vector2(11.83, 1)
+texture = SubResource("PlaceholderTexture2D_k2rrq")

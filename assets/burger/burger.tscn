@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0ejlkwlvs6f"]
+
+[ext_resource type="Material" uid="uid://cta0qjd0uux3j" path="res://assets/burger/burger.tres" id="1_daya6"]
+[ext_resource type="Texture2D" uid="uid://cuapu6fuswndg" path="res://assets/burger_beta.png" id="2_upywy"]
+[ext_resource type="Script" path="res://scripts/Burger.cs" id="3_e12k8"]
+
+[node name="Burger" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("3_e12k8")
+sprite = NodePath("BurgerBeta")
+
+[node name="BurgerBeta" type="Sprite2D" parent="."]
+material = ExtResource("1_daya6")
+use_parent_material = true
+texture = ExtResource("2_upywy")
