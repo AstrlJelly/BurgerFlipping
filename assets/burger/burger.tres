@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cjy5x7auac824" path="res://assets/burger/raw/burger6.png" id="10_jfegc"]
 
 [resource]
+resource_local_to_scene = true
 shader = ExtResource("1_v7jk6")
 shader_parameter/cookedPercentages = Vector2(0, 0)
 shader_parameter/rawBurgers = Array[Texture2D]([ExtResource("5_vhbfw"), ExtResource("6_s7560"), ExtResource("7_y6q6m"), ExtResource("8_hsvm6"), ExtResource("9_sirvj"), ExtResource("10_jfegc")])

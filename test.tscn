@@ -1,9 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmqyrmtfdayto"]
+[gd_scene load_steps=17 format=3 uid="uid://dmqyrmtfdayto"]
 
 [ext_resource type="PackedScene" uid="uid://d0ejlkwlvs6f" path="res://assets/burger/burger.tscn" id="1_v5dy0"]
-[ext_resource type="Material" uid="uid://cta0qjd0uux3j" path="res://assets/burger/burger.tres" id="2_nguk1"]
+[ext_resource type="Shader" path="res://assets/burger/burger.gdshader" id="2_c4vbt"]
+[ext_resource type="Texture2D" uid="uid://bu2b35fhnll3p" path="res://assets/burger/cooked/cooked_burger1.png" id="3_haljb"]
 [ext_resource type="Material" uid="uid://bodjepna6ac20" path="res://assets/test/test.tres" id="3_vkl7g"]
 [ext_resource type="Texture2D" uid="uid://d1jlmmadq6cnw" path="res://icon.svg" id="4_53wa2"]
+[ext_resource type="Texture2D" uid="uid://bgv134i6gufsd" path="res://assets/burger/cooked/cooked_burger2.png" id="4_yv8a8"]
+[ext_resource type="Texture2D" uid="uid://bjbm5v61f1gew" path="res://assets/burger/cooked/cooked_burger3.png" id="5_s6iq3"]
+[ext_resource type="Texture2D" uid="uid://d3bp6luvcdcrf" path="res://assets/burger/raw/burger1.png" id="6_xxmq1"]
+[ext_resource type="Texture2D" uid="uid://cph7p3f851b1o" path="res://assets/burger/raw/burger2.png" id="7_vvbef"]
+[ext_resource type="Texture2D" uid="uid://1sg1tmbdcnyt" path="res://assets/burger/raw/burger3.png" id="8_er353"]
+[ext_resource type="Texture2D" uid="uid://bjxfrkrrqca7t" path="res://assets/burger/raw/burger4.png" id="9_7unry"]
+[ext_resource type="Texture2D" uid="uid://dkv2m23lx1n1j" path="res://assets/burger/raw/burger5.png" id="10_g36e8"]
+[ext_resource type="Texture2D" uid="uid://cjy5x7auac824" path="res://assets/burger/raw/burger6.png" id="11_m6onj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1rkwv"]
+resource_local_to_scene = true
+shader = ExtResource("2_c4vbt")
+shader_parameter/cookedPercentages = Vector2(0, 0)
+shader_parameter/rawBurgers = Array[Texture2D]([ExtResource("6_xxmq1"), ExtResource("7_vvbef"), ExtResource("8_er353"), ExtResource("9_7unry"), ExtResource("10_g36e8"), ExtResource("11_m6onj")])
+shader_parameter/cookedBurgers = Array[Texture2D]([ExtResource("3_haljb"), ExtResource("4_yv8a8"), ExtResource("5_s6iq3")])
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2apuw"]
+resource_local_to_scene = true
+shader = ExtResource("2_c4vbt")
+shader_parameter/cookedPercentages = Vector2(0, 0)
+shader_parameter/rawBurgers = Array[Texture2D]([ExtResource("6_xxmq1"), ExtResource("7_vvbef"), ExtResource("8_er353"), ExtResource("9_7unry"), ExtResource("10_g36e8"), ExtResource("11_m6onj")])
+shader_parameter/cookedBurgers = Array[Texture2D]([ExtResource("3_haljb"), ExtResource("4_yv8a8"), ExtResource("5_s6iq3")])
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_k2rrq"]
 size = Vector2(100, 100)
@@ -11,15 +34,16 @@ size = Vector2(100, 100)
 [node name="Scene" type="Node2D"]
 
 [node name="Burger1" parent="." instance=ExtResource("1_v5dy0")]
-material = ExtResource("2_nguk1")
+material = SubResource("ShaderMaterial_1rkwv")
+use_parent_material = true
 position = Vector2(304, 529)
 scale = Vector2(0.5, 0.5)
+cookTime = 1.0
 
 [node name="Burger2" parent="." instance=ExtResource("1_v5dy0")]
-material = ExtResource("2_nguk1")
-position = Vector2(815, 529)
+material = SubResource("ShaderMaterial_2apuw")
+position = Vector2(812, 529)
 scale = Vector2(0.5, 0.5)
-cookTime = 10.0
 
 [node name="UVTest" type="Sprite2D" parent="."]
 material = ExtResource("3_vkl7g")
