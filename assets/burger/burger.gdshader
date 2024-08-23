@@ -5,23 +5,37 @@ uniform vec2 cookedPercentages = vec2(0, 0);
 uniform sampler2D rawBurgers[5];
 uniform sampler2D cookedBurgers[3];
 
+uniform int whichRaw;
+uniform int whichCooked;
+
 void vertex() {
-	//VERTEX.x += 50.0;
+	// body
 }
 
 void fragment() {
-	//vec4 new_color = vec4(1, 0, 0, 1);
-	//vec3 new_color = vec3(abs((mod(TIME / 2.0, 2) - 1.0)), 0.0, 0.0);
-	
-	vec4 rawColor = textureLod(rawBurgers[0], vec2(UV.x, UV.y / 5.0), 0.0);
-	vec2 rawPercentages = 1.0 - cookedPercentages;
-	rawColor.rgb *= rawPercentages.x * (1.0 - UV.y) + (rawPercentages.y * UV.y);
-	vec4 cookedColor = textureLod(cookedBurgers[0], vec2(UV.x, UV.y / 5.0), 0.0);
-	cookedColor.rgb *= cookedPercentages.x * (1.0 - UV.y) + (cookedPercentages.y * UV.y);
-	COLOR.rgb *= rawColor.rgb + cookedColor.rgb;
-}
+	// preserve resolution of burger texture
+	vec2 size = vec2(textureSize(TEXTURE, 0));
+	bool xGreater = size.x > size.y;
+	float equalizer = xGreater ? (size.x / size.y) : (size.y / size.x);
+	vec2 textureUv = UV;
+	if (xGreater) {
+		textureUv.y /= equalizer;
+	} else {
+		textureUv.x /= equalizer;
+	}
 
-//void light() {
-	// Called for every pixel for every light affecting the material.
-	// Uncomment to replace the default light processing function with this one.
-//}
+	// use the original texture to map to red and green
+	vec4 colorMap = COLOR;
+	vec2 rawPercentages = 1.0 - cookedPercentages;
+	
+	// raw
+	vec4 rawColor = textureLod(rawBurgers[whichRaw], textureUv, 0.0);
+	rawColor.rgb *= rawPercentages.x * (1.0 - UV.x) + (rawPercentages.y * colorMap.g);
+	
+	// cooked
+	vec4 cookedColor = textureLod(cookedBurgers[whichCooked], textureUv, 0.0);
+	cookedColor.rgb *= cookedPercentages.x * (1.0 - UV.x) + (cookedPercentages.y * colorMap.g);
+	
+	// modify color
+	COLOR.rgb = rawColor.rgb + cookedColor.rgb;
+}

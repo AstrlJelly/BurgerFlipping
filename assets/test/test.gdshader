@@ -11,7 +11,7 @@ void vertex() {
 
 void fragment() {
 	COLOR = vec4(1, 1, 1, 1);
-	vec4 new_color = vec4(UV.x, UV.y, 0, 1);
+	vec4 new_color = vec4(0.85, 1, 0, 0.7);
 	//vec3 new_color = vec3(abs((mod(TIME / 2.0, 2) - 1.0)), 0.0, 0.0);
 
 	COLOR *= new_color;

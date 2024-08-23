@@ -15,5 +15,7 @@
 resource_local_to_scene = true
 shader = ExtResource("1_v7jk6")
 shader_parameter/cookedPercentages = Vector2(0, 0)
+shader_parameter/whichRaw = null
+shader_parameter/whichCooked = null
 shader_parameter/rawBurgers = Array[Texture2D]([ExtResource("5_vhbfw"), ExtResource("6_s7560"), ExtResource("7_y6q6m"), ExtResource("8_hsvm6"), ExtResource("9_sirvj"), ExtResource("10_jfegc")])
 shader_parameter/cookedBurgers = Array[Texture2D]([ExtResource("2_l4dh0"), ExtResource("3_4gvqv"), ExtResource("4_g7brf")])

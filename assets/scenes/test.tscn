@@ -14,17 +14,21 @@
 [ext_resource type="Texture2D" uid="uid://dkv2m23lx1n1j" path="res://assets/burger/raw/burger5.png" id="10_g36e8"]
 [ext_resource type="Texture2D" uid="uid://cjy5x7auac824" path="res://assets/burger/raw/burger6.png" id="11_m6onj"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1rkwv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0rmut"]
 resource_local_to_scene = true
 shader = ExtResource("2_c4vbt")
 shader_parameter/cookedPercentages = Vector2(0, 0)
+shader_parameter/whichRaw = null
+shader_parameter/whichCooked = null
 shader_parameter/rawBurgers = Array[Texture2D]([ExtResource("6_xxmq1"), ExtResource("7_vvbef"), ExtResource("8_er353"), ExtResource("9_7unry"), ExtResource("10_g36e8"), ExtResource("11_m6onj")])
 shader_parameter/cookedBurgers = Array[Texture2D]([ExtResource("3_haljb"), ExtResource("4_yv8a8"), ExtResource("5_s6iq3")])
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2apuw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_moc4x"]
 resource_local_to_scene = true
 shader = ExtResource("2_c4vbt")
 shader_parameter/cookedPercentages = Vector2(0, 0)
+shader_parameter/whichRaw = null
+shader_parameter/whichCooked = null
 shader_parameter/rawBurgers = Array[Texture2D]([ExtResource("6_xxmq1"), ExtResource("7_vvbef"), ExtResource("8_er353"), ExtResource("9_7unry"), ExtResource("10_g36e8"), ExtResource("11_m6onj")])
 shader_parameter/cookedBurgers = Array[Texture2D]([ExtResource("3_haljb"), ExtResource("4_yv8a8"), ExtResource("5_s6iq3")])
 
@@ -34,14 +38,14 @@ size = Vector2(100, 100)
 [node name="Scene" type="Node2D"]
 
 [node name="Burger1" parent="." instance=ExtResource("1_v5dy0")]
-material = SubResource("ShaderMaterial_1rkwv")
+material = SubResource("ShaderMaterial_0rmut")
 use_parent_material = true
 position = Vector2(304, 529)
 scale = Vector2(0.5, 0.5)
 cookTime = 1.0
 
 [node name="Burger2" parent="." instance=ExtResource("1_v5dy0")]
-material = SubResource("ShaderMaterial_2apuw")
+material = SubResource("ShaderMaterial_moc4x")
 position = Vector2(812, 529)
 scale = Vector2(0.5, 0.5)
 
@@ -51,6 +55,7 @@ position = Vector2(64, 64)
 texture = ExtResource("4_53wa2")
 
 [node name="Grill" type="Sprite2D" parent="."]
-position = Vector2(569, 620)
-scale = Vector2(11.83, 1)
+position = Vector2(0, 564)
+scale = Vector2(11.52, 0.84)
 texture = SubResource("PlaceholderTexture2D_k2rrq")
+centered = false

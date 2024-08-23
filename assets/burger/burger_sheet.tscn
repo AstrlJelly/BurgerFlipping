@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds81nox6bfvc1"]
+
+[ext_resource type="Script" path="res://addons/sprite_cutter/AtlasScene.gd" id="1_tfc80"]
+[ext_resource type="Texture2D" uid="uid://d11j5hrrdg36g" path="res://assets/burger/burger_grill.png" id="2_2i8ek"]
+
+[node name="AtlasScene" type="Node"]
+script = ExtResource("1_tfc80")
+destination_path = "res://assets/burger/sprites/"
+
+[node name="patty_up" type="Sprite2D" parent="."]
+position = Vector2(106, 451)
+texture = ExtResource("2_2i8ek")
+region_enabled = true
+region_rect = Rect2(0, 1, 874, 874)
+
+[node name="patty_down" type="Sprite2D" parent="."]
+position = Vector2(50, 1458)
+texture = ExtResource("2_2i8ek")
+region_enabled = true
+region_rect = Rect2(0, 1024, 874, 874)
+
+[node name="patty_flipDown_1" type="Sprite2D" parent="."]
+position = Vector2(1106, 452)
+texture = ExtResource("2_2i8ek")
+region_enabled = true
+region_rect = Rect2(991, 1, 874, 655)
+
+[node name="patty_flipDown_2" type="Sprite2D" parent="."]
+position = Vector2(1087, 1075)
+texture = ExtResource("2_2i8ek")
+region_enabled = true
+region_rect = Rect2(991, 755, 874, 354)
+
+[node name="patty_mid" type="Sprite2D" parent="."]
+position = Vector2(1107, 1506)
+texture = ExtResource("2_2i8ek")
+region_enabled = true
+region_rect = Rect2(991, 1246, 874, 144)
+
+[node name="patty_flipUp_1" type="Sprite2D" parent="."]
+position = Vector2(2140, 465)
+texture = ExtResource("2_2i8ek")
+region_enabled = true
+region_rect = Rect2(1929, 0, 874, 656)
+
+[node name="patty_flipUp_2" type="Sprite2D" parent="."]
+position = Vector2(2114, 1060)
+texture = ExtResource("2_2i8ek")
+region_enabled = true
+region_rect = Rect2(1918, 755, 874, 354)
