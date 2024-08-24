@@ -1,7 +1,7 @@
 extends Burger
 
 func _ready() -> void:
-	ready();
+	ready()
 
 func _process(delta: float) -> void:
-	process(delta);
+	process(delta)

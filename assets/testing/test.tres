@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bodjepna6ac20"]
+
+[ext_resource type="Shader" path="res://assets/test/test.gdshader" id="1_whpuu"]
+
+[resource]
+shader = ExtResource("1_whpuu")
+shader_parameter/cookedPercentages = Vector2(1, 0.5)
+shader_parameter/rawBurgers = Array[Texture2D]([])
+shader_parameter/cookedBurgers = Array[Texture2D]([])

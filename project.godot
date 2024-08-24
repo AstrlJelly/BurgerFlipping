@@ -8,10 +8,16 @@
 
 config_version=5
 
+[addons]
+
+string_enum/tools/enable_auto_tool=true
+string_enum/string_suffixes=PackedStringArray("_default_suffix")
+string_enum/string_names/_default_suffix=PackedStringArray()
+
 [application]
 
 config/name="BurgerFlipping"
-run/main_scene="res://assets/scenes/grill.tscn"
+run/main_scene="res://assets/scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -25,4 +31,4 @@ movie_writer/movie_file="/Users/bdlaw/Videos/Godot Captures"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/codeandweb.texturepacker/plugin.cfg", "res://addons/gdfxr/plugin.cfg", "res://addons/ridiculous_coding/plugin.cfg", "res://addons/sprite_cutter/plugin.cfg")
+enabled=PackedStringArray("res://addons/codeandweb.texturepacker/plugin.cfg", "res://addons/gdfxr/plugin.cfg", "res://addons/sprite_cutter/plugin.cfg", "res://addons/string_enum/plugin.cfg")

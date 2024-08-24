@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw2nc4rtfnhta"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_7hsf1"]
+[ext_resource type="Texture2D" uid="uid://d4b7gkd4qly6d" path="res://assets/testing/smiley.png" id="2_xaauj"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_swsrh"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Player" type="Node2D" node_paths=PackedStringArray("cursor", "name_label")]
+script = ExtResource("1_7hsf1")
+cursor = NodePath("Cursor")
+name_label = NodePath("Cursor/Name")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_swsrh")
+
+[node name="Cursor" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_xaauj")
+
+[node name="Name" type="RichTextLabel" parent="Cursor"]
+offset_left = -768.0
+offset_top = -416.0
+offset_right = 768.0
+offset_bottom = -96.0
+bbcode_enabled = true
+text = "[center][font_size=100]WWWWWWWWWWWWWWWW"
+fit_content = true
+scroll_following = true
+autowrap_mode = 0

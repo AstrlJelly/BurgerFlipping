@@ -5,8 +5,8 @@ uniform vec2 cookedPercentages = vec2(0, 0);
 uniform sampler2D rawBurgers[5];
 uniform sampler2D cookedBurgers[3];
 
-uniform int whichRaw;
-uniform int whichCooked;
+uniform int whichRaw = 0;
+uniform int whichCooked = 0;
 
 void vertex() {
 	// body
