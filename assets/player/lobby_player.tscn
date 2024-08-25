@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://djm443krfh1nq"]
+
+[node name="LobbyPlayer" type="HSplitContainer"]
+split_offset = 95
+
+[node name="ID" type="RichTextLabel" parent="."]
+layout_mode = 2
+text = "8888888888"
+fit_content = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+text = "WWWWWWWWWWWWWWWW"
+fit_content = true

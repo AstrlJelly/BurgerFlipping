@@ -1,28 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://bs118ekdp6chp"]
+[gd_scene load_steps=5 format=3 uid="uid://bs118ekdp6chp"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_2ego2"]
-[ext_resource type="PackedScene" uid="uid://cw2nc4rtfnhta" path="res://assets/scenes/player.tscn" id="2_50iu7"]
+[ext_resource type="PackedScene" uid="uid://cw2nc4rtfnhta" path="res://assets/player/player.tscn" id="2_50iu7"]
 [ext_resource type="Texture2D" uid="uid://rr4c4s1eyygn" path="res://assets/testing/jimny_presto.jpg" id="3_0lnw8"]
+[ext_resource type="PackedScene" uid="uid://djm443krfh1nq" path="res://assets/player/lobby_player.tscn" id="4_xmgn1"]
 
 [node name="Game" type="Node2D"]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://assets/scenes/player.tscn")
-spawn_path = NodePath("../MainMenu")
+spawn_path = NodePath("../LobbyList")
 
-[node name="MainMenu" type="Node2D" parent="." node_paths=PackedStringArray("username_input", "create_port_input", "join_port_input")]
+[node name="Lobby" type="Node2D" parent="." node_paths=PackedStringArray("join_create_buttons", "username_input", "create_port_input", "join_port_input")]
 script = ExtResource("1_2ego2")
+join_create_buttons = NodePath("../JoinOrCreate")
 player_scene = ExtResource("2_50iu7")
-username_input = NodePath("../UsernameInput")
-create_port_input = NodePath("../CreateInput")
-join_port_input = NodePath("../JoinInput")
+lobby_player_scene = ExtResource("4_xmgn1")
+username_input = NodePath("../JoinOrCreate/UsernameInput")
+create_port_input = NodePath("../JoinOrCreate/CreateInput")
+join_port_input = NodePath("../JoinOrCreate/JoinInput")
 
-[node name="JimnyPresto" type="Sprite2D" parent="."]
+[node name="Title" type="Node2D" parent="."]
+
+[node name="JimnyPresto" type="Sprite2D" parent="Title"]
 position = Vector2(576, 140.5)
 scale = Vector2(0.489796, 0.0932)
 texture = ExtResource("3_0lnw8")
 
-[node name="Title" type="RichTextLabel" parent="."]
+[node name="Title" type="RichTextLabel" parent="Title"]
 offset_left = 224.0
 offset_top = 80.0
 offset_right = 384.0
@@ -31,7 +35,7 @@ bbcode_enabled = true
 text = "[font_size=30][center]burger
 [color=red]flippin"
 
-[node name="Author" type="RichTextLabel" parent="."]
+[node name="Author" type="RichTextLabel" parent="Title"]
 offset_left = 768.0
 offset_top = 80.0
 offset_right = 928.0
@@ -39,48 +43,83 @@ offset_bottom = 200.0
 bbcode_enabled = true
 text = "by astrl"
 
-[node name="UsernameInput" type="TextEdit" parent="."]
-offset_left = 448.0
-offset_top = 344.0
-offset_right = 704.0
-offset_bottom = 384.0
+[node name="JoinOrCreate" type="Node2D" parent="."]
+
+[node name="UsernameInput" type="TextEdit" parent="JoinOrCreate"]
+offset_left = 128.0
+offset_top = 352.0
+offset_right = 384.0
+offset_bottom = 392.0
 placeholder_text = "Username..."
 
-[node name="CreateGame" type="Button" parent="."]
-offset_left = 320.0
-offset_top = 440.0
-offset_right = 448.0
-offset_bottom = 496.0
+[node name="CreateGame" type="Button" parent="JoinOrCreate"]
+offset_left = 96.0
+offset_top = 504.0
+offset_right = 224.0
+offset_bottom = 560.0
 text = "Create Game"
 
-[node name="JoinGame" type="Button" parent="."]
-offset_left = 704.0
-offset_top = 440.0
-offset_right = 832.0
-offset_bottom = 496.0
+[node name="JoinGame" type="Button" parent="JoinOrCreate"]
+offset_left = 96.0
+offset_top = 432.0
+offset_right = 224.0
+offset_bottom = 488.0
 text = "Join Game"
 
-[node name="CreateInput" type="TextEdit" parent="."]
-offset_left = 304.0
-offset_top = 520.0
-offset_right = 464.0
-offset_bottom = 560.0
+[node name="CreateInput" type="TextEdit" parent="JoinOrCreate"]
+offset_left = 256.0
+offset_top = 512.0
+offset_right = 416.0
+offset_bottom = 552.0
 placeholder_text = "Port..."
 autowrap_mode = 2
 
-[node name="JoinInput" type="TextEdit" parent="."]
-offset_left = 688.0
-offset_top = 520.0
-offset_right = 848.0
-offset_bottom = 560.0
+[node name="JoinInput" type="TextEdit" parent="JoinOrCreate"]
+offset_left = 256.0
+offset_top = 440.0
+offset_right = 416.0
+offset_bottom = 480.0
 placeholder_text = "Address : Port..."
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 z_index = -100
 offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
 color = Color(0.302613, 0.387977, 0.369001, 1)
 
-[connection signal="pressed" from="CreateGame" to="MainMenu" method="_on_create_game_pressed"]
-[connection signal="pressed" from="JoinGame" to="MainMenu" method="_on_join_game_pressed"]
+[node name="LobbyList" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="LobbyList"]
+z_index = -100
+offset_left = 592.0
+offset_top = 352.0
+offset_right = 976.0
+offset_bottom = 552.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.317647)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LobbyList"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 600.0
+offset_top = 360.0
+offset_right = 968.0
+offset_bottom = 544.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LobbyList/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HSplitContainer" parent="LobbyList/ScrollContainer/VBoxContainer" instance=ExtResource("4_xmgn1")]
+layout_mode = 2
+
+[connection signal="pressed" from="JoinOrCreate/CreateGame" to="Lobby" method="_on_create_game_pressed"]
+[connection signal="pressed" from="JoinOrCreate/JoinGame" to="Lobby" method="_on_join_game_pressed"]

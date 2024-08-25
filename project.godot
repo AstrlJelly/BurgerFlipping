@@ -21,6 +21,10 @@ run/main_scene="res://assets/scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerData="*res://scripts/GameManager.gd"
+
 [dotnet]
 
 project/assembly_name="BurgerFlipping"
