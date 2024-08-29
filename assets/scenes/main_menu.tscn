@@ -3,18 +3,32 @@
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_2ego2"]
 [ext_resource type="PackedScene" uid="uid://cw2nc4rtfnhta" path="res://assets/player/player.tscn" id="2_50iu7"]
 [ext_resource type="Texture2D" uid="uid://rr4c4s1eyygn" path="res://assets/testing/jimny_presto.jpg" id="3_0lnw8"]
-[ext_resource type="PackedScene" uid="uid://djm443krfh1nq" path="res://assets/player/lobby_player.tscn" id="4_xmgn1"]
+
+[sub_resource type="PackedScene" id="PackedScene_p2b3j"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("LobbyPlayer", "split_offset", "HSplitContainer", "ID", "layout_mode", "text", "fit_content", "RichTextLabel"),
+"node_count": 3,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 7, 3, -1, 3, 4, 1, 5, 2, 6, 3, 0, 0, 0, 7, 7, -1, 3, 4, 1, 5, 4, 6, 3, 0),
+"variants": [95, 2, "8888888888", true, "WWWWWWWWWWWWWWWW"],
+"version": 3
+}
 
 [node name="Game" type="Node2D"]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-spawn_path = NodePath("../LobbyList")
+_spawnable_scenes = PackedStringArray("res://assets/player/player.tscn")
+spawn_path = NodePath("../Lobby")
 
-[node name="Lobby" type="Node2D" parent="." node_paths=PackedStringArray("join_create_buttons", "username_input", "create_port_input", "join_port_input")]
+[node name="Lobby" type="Node2D" parent="." node_paths=PackedStringArray("join_create_buttons", "lobby_players_parent", "username_input", "create_port_input", "join_port_input")]
 script = ExtResource("1_2ego2")
 join_create_buttons = NodePath("../JoinOrCreate")
 player_scene = ExtResource("2_50iu7")
-lobby_player_scene = ExtResource("4_xmgn1")
+lobby_player_scene = SubResource("PackedScene_p2b3j")
+lobby_players_parent = NodePath("../LobbyList/ScrollContainer/VBoxContainer")
 username_input = NodePath("../JoinOrCreate/UsernameInput")
 create_port_input = NodePath("../JoinOrCreate/CreateInput")
 join_port_input = NodePath("../JoinOrCreate/JoinInput")
@@ -89,6 +103,10 @@ offset_bottom = 648.0
 mouse_filter = 2
 color = Color(0.302613, 0.387977, 0.369001, 1)
 
+[node name="MultiplayerSpawner2" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://assets/player/lobby_player.tscn")
+spawn_path = NodePath("../LobbyList/ScrollContainer/VBoxContainer")
+
 [node name="LobbyList" type="Node2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="LobbyList"]
@@ -118,8 +136,20 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HSplitContainer" parent="LobbyList/ScrollContainer/VBoxContainer" instance=ExtResource("4_xmgn1")]
+[node name="HSplitContainer" type="HSplitContainer" parent="LobbyList/ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
+split_offset = 95
+
+[node name="ID" type="RichTextLabel" parent="LobbyList/ScrollContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "8888888888"
+fit_content = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="LobbyList/ScrollContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+text = "WWWWWWWWWWWWWWWW"
+fit_content = true
 
 [connection signal="pressed" from="JoinOrCreate/CreateGame" to="Lobby" method="_on_create_game_pressed"]
 [connection signal="pressed" from="JoinOrCreate/JoinGame" to="Lobby" method="_on_join_game_pressed"]
